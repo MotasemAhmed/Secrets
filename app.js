@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const { get } = require("http");
 
 const app = express();
 const port = 3000;
@@ -12,5 +13,17 @@ app.use(
     extended: true,
   })
 );
+
+app.get("/", (req, res) => {
+  res.render("home");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/register", (req, res) => {
+  res.render("register");
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
