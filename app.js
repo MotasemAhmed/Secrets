@@ -48,4 +48,19 @@ app.post("/register", (req, res) => {
   });
 });
 
+app.post("/login", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  User.findOne({ email: username }, (err, found) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (found) {
+        if (found.password === password) {
+          res.render("secrets");
+        }
+      }
+    }
+  });
+});
 app.listen(port, () => console.log(`app listening on port ${port}!`));
